@@ -1,0 +1,42 @@
+{
+  "name": "korgem-panda-pig-arcade",
+  "version": "1.0.0",
+  "description": "KORGEM Panda & Pig Balloon Pop arcade cabinet game with Raspberry Pi Pico hardware control",
+  "main": "electron/main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "dist": "electron-builder --win portable nsis",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@serialport/parser-readline": "^12.0.0",
+    "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.korgem.pandapig",
+    "productName": "KORGEM Panda Pig Balloon Pop",
+    "files": [
+      "app/**/*",
+      "assets/**/*",
+      "electron/**/*",
+      "config/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "directories": {
+      "output": "dist"
+    }
+  }
+}

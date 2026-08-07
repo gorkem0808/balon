@@ -1,0 +1,4 @@
+KORGEM Panda & Pig Balloon Pop
+Final Software/Hardware Integration Package
+Version: 1.0.0
+Date: 2026-08-07

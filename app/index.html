@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>KORGEM Panda & Pig Balloon Pop</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="stage" aria-label="KORGEM Panda ve Domuz Balon Oyunu">
+    <img id="baseScene" src="../assets/scene/approved_scene.png" alt="Panda ve domuz lunapark oyun sahnesi" draggable="false" />
+
+    <div id="wheelViewport" class="patch patch-wheel" aria-hidden="true">
+      <img class="wheel-frame active" src="../assets/wheel/wheel_0.jpg" alt="" />
+      <img class="wheel-frame" src="../assets/wheel/wheel_1.jpg" alt="" />
+      <img class="wheel-frame" src="../assets/wheel/wheel_2.jpg" alt="" />
+      <img class="wheel-frame" src="../assets/wheel/wheel_3.jpg" alt="" />
+    </div>
+
+    <div id="pandaPatch" class="patch patch-panda" aria-hidden="true">
+      <img class="character-frame active" src="../assets/characters/panda_0.jpg" alt="" />
+      <img class="character-frame" src="../assets/characters/panda_1.jpg" alt="" />
+      <img class="character-frame" src="../assets/characters/panda_2.jpg" alt="" />
+      <img class="character-frame" src="../assets/characters/panda_3.jpg" alt="" />
+    </div>
+
+    <div id="pigPatch" class="patch patch-pig" aria-hidden="true">
+      <img class="character-frame active" src="../assets/characters/pig_0.jpg" alt="" />
+      <img class="character-frame" src="../assets/characters/pig_1.jpg" alt="" />
+      <img class="character-frame" src="../assets/characters/pig_2.jpg" alt="" />
+      <img class="character-frame" src="../assets/characters/pig_3.jpg" alt="" />
+    </div>
+
+    <section id="hud" aria-label="Oyun bilgileri">
+      <div class="hud-card hud-score">
+        <span class="hud-icon">★</span><span class="hud-label">PUAN</span><strong id="scoreValue">0</strong>
+      </div>
+      <div class="hud-card hud-time">
+        <span class="hud-icon">◷</span><span class="hud-label">SÜRE</span><strong id="timeValue">60</strong>
+      </div>
+      <div class="hud-card hud-best">
+        <span class="hud-icon">🏆</span><span class="hud-label">REKOR</span><strong id="bestValue">0</strong>
+      </div>
+      <button id="pauseBtn" class="round-btn" type="button" aria-label="Duraklat">Ⅱ</button>
+    </section>
+
+    <div id="hardwareBadge" class="hardware-badge offline"><span></span><b>PICO YOK</b></div>
+    <div id="creditsBadge">KREDİ: <b id="creditsValue">0</b></div>
+
+    <div id="balloonLayer" aria-hidden="false"></div>
+    <div id="burstLayer" aria-hidden="true"></div>
+
+    <div id="centerMessage" class="center-message show">
+      <div class="logo-small">PANDA &amp; PIG</div>
+      <div class="title">BALLOON POP</div>
+      <div id="messageText" class="message-text">KOIN ATIN</div>
+      <div class="message-sub">Test: C = koin · A = sol sensör · L = sağ sensör · F8 = servis</div>
+    </div>
+
+    <div id="countdown" class="countdown" aria-live="assertive"></div>
+    <div id="toast" class="toast"></div>
+
+    <aside id="servicePanel" class="service-panel" aria-hidden="true">
+      <div class="service-shell">
+        <header class="service-header">
+          <div>
+            <small>KORGEM SERVICE</small>
+            <h2>F8 Oyun / Pico Ayarları</h2>
+          </div>
+          <button id="closeService" class="service-close" type="button">✕</button>
+        </header>
+
+        <div class="service-grid">
+          <section class="service-section">
+            <h3>Oyun</h3>
+            <label>Oyun süresi (sn)<input id="setGameDuration" type="number" min="10" max="600" /></label>
+            <label>Puan / patlatma<input id="setScorePerHit" type="number" min="1" max="10000" /></label>
+            <label>Balon bekleme min (ms)<input id="setLaunchMin" type="number" min="200" max="10000" /></label>
+            <label>Balon bekleme max (ms)<input id="setLaunchMax" type="number" min="200" max="10000" /></label>
+            <label>Patlatma süresi (ms)<input id="setHitWindow" type="number" min="500" max="15000" /></label>
+            <label class="check"><input id="setAutoStart" type="checkbox" /> Koin gelince otomatik başlat</label>
+          </section>
+
+          <section class="service-section">
+            <h3>Röle / Sensör</h3>
+            <label>Sol motor röle süresi (ms)<input id="setMotorLeft" type="number" min="50" max="10000" /></label>
+            <label>Sağ motor röle süresi (ms)<input id="setMotorRight" type="number" min="50" max="10000" /></label>
+            <label>Sensör debounce (ms)<input id="setSensorDebounce" type="number" min="10" max="2000" /></label>
+            <label>LED hit pulse (ms)<input id="setLedHit" type="number" min="20" max="5000" /></label>
+            <label class="check"><input id="setWheelAnim" type="checkbox" /> Dönme dolap animasyonu</label>
+            <label class="check"><input id="setCharacterAnim" type="checkbox" /> Panda / domuz reaksiyonu</label>
+          </section>
+
+          <section class="service-section">
+            <h3>MP3</h3>
+            <label>Ses (0-30)<input id="setMp3Volume" type="number" min="0" max="30" /></label>
+            <div class="track-grid">
+              <label>Koin<input id="setTrackCoin" type="number" min="1" max="999" /></label>
+              <label>Başla<input id="setTrackStart" type="number" min="1" max="999" /></label>
+              <label>Balon<input id="setTrackLaunch" type="number" min="1" max="999" /></label>
+              <label>Vuruş<input id="setTrackHit" type="number" min="1" max="999" /></label>
+              <label>Kaçan<input id="setTrackMiss" type="number" min="1" max="999" /></label>
+              <label>Bitiş<input id="setTrackEnd" type="number" min="1" max="999" /></label>
+            </div>
+          </section>
+
+          <section class="service-section">
+            <h3>Pico Bağlantısı</h3>
+            <label>Seri port<select id="portSelect"><option value="">Port tara...</option></select></label>
+            <div class="button-row">
+              <button id="refreshPorts" type="button">Port Tara</button>
+              <button id="connectPort" type="button">Bağlan</button>
+              <button id="disconnectPort" type="button">Kes</button>
+            </div>
+            <div id="portState" class="port-state">Bağlı değil</div>
+            <h4>Servis Testleri</h4>
+            <div class="test-grid">
+              <button data-test="motorL" type="button">Sol Motor</button>
+              <button data-test="motorR" type="button">Sağ Motor</button>
+              <button data-test="sensorL" type="button">Sol Sensör</button>
+              <button data-test="sensorR" type="button">Sağ Sensör</button>
+              <button data-test="coin" type="button">Koin</button>
+              <button data-test="led" type="button">LED</button>
+              <button data-test="mp3" type="button">MP3</button>
+            </div>
+          </section>
+        </div>
+
+        <footer class="service-footer">
+          <div id="serialLog" class="serial-log">Servis hazır.</div>
+          <div class="button-row right">
+            <button id="resetDefaults" type="button">Varsayılan</button>
+            <button id="saveSettings" class="primary" type="button">Kaydet &amp; Uygula</button>
+          </div>
+        </footer>
+      </div>
+    </aside>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
