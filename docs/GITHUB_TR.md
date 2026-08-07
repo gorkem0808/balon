@@ -1,20 +1,15 @@
-# GitHub'a Yükleme
+# GitHub'a Güncelleme
 
-Yeni boş GitHub deposu oluşturun ve bu klasörün içeriğini depoya yükleyin.
+Mevcut `balon` reposunda eski dosyaların yerine bu paketin içeriğini yükleyin.
 
-Komut satırı örneği:
+GitHub web arayüzünde en kolay yöntem:
 
-```bash
-git init
-git add .
-git commit -m "KORGEM Panda Pig final arcade project"
-git branch -M main
-git remote add origin <GITHUB_REPO_ADRESI>
-git push -u origin main
-```
+1. Repo `Code` sekmesine girin.
+2. Eski proje dosyalarını silin veya yeni paketi temiz bir repo/branch'e yükleyin.
+3. Bu ZIP'i bilgisayarda açın.
+4. ZIP'in içindeki dosya ve klasörleri repo köküne yükleyin. ZIP dosyasının kendisini yüklemek yeterli değildir.
+5. Commit işlemini tamamlayın.
+6. `Settings > Pages` altında `main` ve `/(root)` seçili kalsın.
+7. Yayın tamamlanınca sayfayı `Ctrl+F5` ile yenileyin.
 
-## Windows build
-
-Depo GitHub'a gittikten sonra `Actions > Build Windows Arcade > Run workflow` ile Windows paketleme işi çalıştırılabilir.
-
-Not: GitHub Pages üzerinde açılan web sürümü sadece görsel/yazılım testi içindir. Pico seri portlu kabin sürümü Electron/Windows uygulamasıdır.
+Kök dizinde `index.html`, `app/`, `assets/`, `docs/` klasörleri görünmelidir.

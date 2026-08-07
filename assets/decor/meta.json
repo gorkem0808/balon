@@ -1,0 +1,90 @@
+{
+  "characters": {
+    "panda": {
+      "x": 238,
+      "y": 415,
+      "w": 411,
+      "h": 408
+    },
+    "pig": {
+      "x": 1082,
+      "y": 408,
+      "w": 411,
+      "h": 457
+    }
+  },
+  "balloons": [
+    {
+      "file": "../assets/decor/balloon_1.png",
+      "x": 608,
+      "y": 117,
+      "w": 136,
+      "h": 172
+    },
+    {
+      "file": "../assets/decor/balloon_2.png",
+      "x": 765,
+      "y": 108,
+      "w": 132,
+      "h": 172
+    },
+    {
+      "file": "../assets/decor/balloon_3.png",
+      "x": 932,
+      "y": 124,
+      "w": 136,
+      "h": 172
+    },
+    {
+      "file": "../assets/decor/balloon_4.png",
+      "x": 701,
+      "y": 267,
+      "w": 128,
+      "h": 164
+    },
+    {
+      "file": "../assets/decor/balloon_5.png",
+      "x": 844,
+      "y": 269,
+      "w": 128,
+      "h": 164
+    },
+    {
+      "file": "../assets/decor/balloon_6.png",
+      "x": 588,
+      "y": 377,
+      "w": 132,
+      "h": 168
+    },
+    {
+      "file": "../assets/decor/balloon_7.png",
+      "x": 765,
+      "y": 386,
+      "w": 132,
+      "h": 172
+    },
+    {
+      "file": "../assets/decor/balloon_8.png",
+      "x": 936,
+      "y": 384,
+      "w": 132,
+      "h": 172
+    }
+  ],
+  "baskets": {
+    "left": {
+      "file": "../assets/decor/basket_left_rim.png",
+      "x": 535,
+      "y": 720,
+      "w": 300,
+      "h": 80
+    },
+    "right": {
+      "file": "../assets/decor/basket_right_rim.png",
+      "x": 820,
+      "y": 720,
+      "w": 310,
+      "h": 80
+    }
+  }
+}
