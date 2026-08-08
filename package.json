@@ -1,9 +1,7 @@
 {
-  "name": "korgem-panda-pig-balloon-pop",
-  "version": "2.0.0",
+  "name": "korgem-panda-pig-balloon-fun",
+  "version": "1.0.0",
   "private": true,
-  "description": "KORGEM Panda & Pig Balloon Pop - GitHub Pages keyboard edition",
-  "scripts": {
-    "serve": "python -m http.server 8000"
-  }
+  "description": "Layered HTML5 arcade game for GitHub Pages",
+  "scripts": {"serve": "python -m http.server 8080"}
 }

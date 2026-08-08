@@ -1,0 +1,31 @@
+export const DEFAULTS = Object.freeze({
+  gameDuration: 60,
+  scorePerHit: 100,
+  balloonInterval: 1300,
+  balloonLife: 2800,
+  warningSeconds: 10,
+  balloonScale: 125,
+  confettiPower: 150,
+  fullscreenOnStart: true,
+  wheel: true,
+  clouds: true,
+  lights: true,
+  flags: true,
+  decorBalloons: true,
+  ambientConfetti: true,
+  blink: true,
+  masterVolume: 82,
+  musicVolume: 36,
+  voiceVolume: 78,
+  effectsVolume: 86,
+  insertCoinVolume: 85,
+  coinVolume: 90,
+  startVolume: 92,
+  launchVolume: 55,
+  scoreVolume: 90,
+  wrongVolume: 88,
+  warningVolume: 86,
+  gameOverVolume: 94
+});
+export const SETTINGS_KEY='korgem_pp_settings_pro_v1';
+export const RECORD_KEY='korgem_pp_record_pro_v1';

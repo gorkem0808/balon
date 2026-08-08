@@ -1,5 +1,6 @@
-KORGEM Panda & Pig Balloon Pop
-Version: 2.0.0 FINAL-KEYBOARD-REVIZE
-Build: GitHub Pages / Keyboard Only
-Ferris wheel: static
-Hardware/Pico: removed
+KORGEM Panda & Pig Balloon Fun Arcade
+Version: 1.0.0 PRO-LAYERED
+Build target: GitHub Pages / Keyboard
+Hardware/Pico: Not included by request
+UI language: English
+Documentation: Turkish + English README

@@ -1,44 +1,45 @@
-# KORGEM Panda & Pig Balloon Pop — Final Revize Klavye Sürümü
+# KORGEM Panda & Pig — Balloon Fun Arcade
 
-Bu paket GitHub Pages üzerinde doğrudan çalışan, PC klavyesiyle oynanan final revize sürümdür.
+Professional layered HTML5 arcade game prepared for GitHub Pages.
 
-## Kontroller
+## Game flow
 
-- `C` : kredi ekle
-- `SPACE` : oyunu başlat
-- `A` : sol sepet / sol balon
-- `L` : sağ sepet / sağ balon
-- `P` : duraklat / devam
-- `F8` : servis ve oyun ayarları
-- `F11` : tam ekran aç / kapat
+1. Attract/demo mode displays **PLEASE INSERT COIN**.
+2. Press **C** to add a credit.
+3. Press **SPACE** to start.
+4. A large balloon rises from either basket.
+5. Press **A** for the panda/left basket or **L** for the pig/right basket.
+6. A correct hit adds score, pops the balloon, triggers confetti and a short character celebration.
+7. A wrong side triggers a wrong-basket sound/reaction.
+8. Final seconds use a warning sound.
+9. **GAME OVER** is shown, then the game returns to **PLEASE INSERT COIN** demo mode.
 
-## Bu revizyonda yapılanlar
+## Keyboard
 
-- Dönme dolap sabitlendi; artık dönmüyor.
-- Panda ve domuz sürekli hızlı dans etmiyor. Boşta çok hafif hareket ediyor, arada göz kırpıyor.
-- Doğru puan alındığında ilgili karakter kısa ve yumuşak bir kutlama hareketi yapıyor.
-- Sepetten çıkan oyun balonu büyütüldü ve sepetten yükseliyormuş gibi animasyon verildi.
-- Konfeti patlaması büyütüldü ve daha yoğun hale getirildi.
-- Arka plandaki dekor balonları çok hafif salınıyor.
-- Lunapark lambaları yanıp sönüyor.
-- Üst HUD yeniden hizalandı: PUAN / SÜRE / REKOR birbirine binmez.
-- Tam ekran modu eklendi. İlk kredi veya başlatma tuşunda tarayıcı izin verirse otomatik tam ekrana geçer.
-- Pico ve harici donanım kodu bu sürümden tamamen çıkarıldı.
-- Yerel ses sistemi eklendi: müzik, kredi, başlangıç, puan, yanlış sepet, son saniye uyarısı, oyun sonu ve balon çıkış sesi.
-- F8 menüsüne ana ses, müzik, efektler ve her olayın ayrı ses seviyesi eklendi.
+- `C` — Insert coin
+- `SPACE` — Start game
+- `A` — Left / Panda basket
+- `L` — Right / Pig basket
+- `P` — Pause / resume
+- `F8` — Service settings
+- `F11` — Full screen
+
+## Professional visual layers
+
+The approved carnival scene is the base visual. Runtime motion is split into independent DOM layers: Ferris-wheel motion, clouds, blinking lights, flags, decorative balloons, ambient confetti, character reaction overlays, eye/blink overlays, gameplay balloons, basket foreground overlays, hit/confetti effects and HUD/UI.
+
+## F8 service settings
+
+Game timing, scoring, balloon size/speed, fullscreen behavior, visual effects, master/music/voice/effects volumes and individual event volumes are stored in browser `localStorage`.
 
 ## GitHub Pages
 
-Repo kökünde `index.html` bulunur. GitHub Pages için:
+Upload the **contents of this folder** to the repository root. In **Settings → Pages**, choose:
 
-1. `Settings > Pages`
-2. `Deploy from a branch`
-3. Branch: `main`
-4. Folder: `/(root)`
-5. Save
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/(root)`
 
-Site açıldığında kök `index.html` otomatik olarak `app/index.html` oyun ekranına yönlendirir.
+The project uses relative paths and requires no build step.
 
-## Not
-
-Tarayıcılar ses ve tam ekranı kullanıcı etkileşimi olmadan engelleyebilir. Bu nedenle ilk `C` veya `SPACE` tuşu ses sistemini ve tam ekran isteğini etkinleştirir.
+> Browser note: music/voice playback starts after the first user interaction due to browser autoplay rules.

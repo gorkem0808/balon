@@ -1,0 +1,15 @@
+@keyframes cloudMove{from{transform:translateX(-28vw)}to{transform:translateX(125vw)}}
+@keyframes lampPulse{0%,100%{opacity:.28;transform:scale(.78)}40%{opacity:1;transform:scale(1.35)}70%{opacity:.55;transform:scale(.95)}}
+@keyframes signGlow{0%,72%,100%{opacity:.08;transform:scale(.8)}82%{opacity:.7;transform:scale(1.15)}}
+@keyframes flagWave{0%,100%{transform:rotate(-5deg) skewX(-3deg)}50%{transform:rotate(7deg) skewX(5deg)}}
+@keyframes decorFloat{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(5px,-12px) rotate(3deg)}}
+@keyframes wheelSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes ambientFall{0%{transform:translate3d(0,-8vh,0) rotate(0);opacity:0}12%{opacity:.5}100%{transform:translate3d(var(--drift),108vh,0) rotate(660deg);opacity:0}}
+@keyframes balloonRise{0%{top:76%;transform:translate(-50%,0) scale(calc(var(--scale) * .68))}12%{transform:translate(-50%,-4%) scale(var(--scale))}55%{transform:translate(calc(-50% + 10px),-8%) scale(var(--scale))}100%{top:16%;transform:translate(calc(-50% - 7px),-16%) scale(var(--scale))}}
+@keyframes burstPiece{0%{transform:translate(-50%,-50%) rotate(0);opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot));opacity:0}}
+@keyframes idlePanda{0%,100%{transform:scale(1.012) rotate(-.25deg)}50%{transform:scale(1.02) rotate(.3deg)}}
+@keyframes idlePig{0%,100%{transform:scale(1.012) rotate(.22deg)}50%{transform:scale(1.022) rotate(-.32deg)}}
+@keyframes celebratePanda{0%{transform:scale(1.02) rotate(0)}24%{transform:scale(1.07) rotate(-1.8deg)}52%{transform:scale(1.075) rotate(1.5deg)}78%{transform:scale(1.055) rotate(-.8deg)}100%{transform:scale(1.02) rotate(0)}}
+@keyframes celebratePig{0%{transform:scale(1.02) rotate(0)}24%{transform:scale(1.07) rotate(1.8deg)}52%{transform:scale(1.075) rotate(-1.5deg)}78%{transform:scale(1.055) rotate(.8deg)}100%{transform:scale(1.02) rotate(0)}}
+@keyframes wrongReact{0%,100%{filter:none;transform:scale(1.02) rotate(0)}28%{filter:saturate(.7) brightness(.9);transform:scale(1.025) rotate(-1deg)}55%{transform:scale(1.025) rotate(1deg)}}
+.character-patch.idle.panda-patch{animation:idlePanda 3.4s ease-in-out infinite}.character-patch.idle.pig-patch{animation:idlePig 3.7s ease-in-out infinite}.character-patch.celebrate.panda-patch{animation:celebratePanda .95s ease-in-out 1}.character-patch.celebrate.pig-patch{animation:celebratePig .95s ease-in-out 1}.character-patch.wrong{animation:wrongReact .48s ease-in-out 1}

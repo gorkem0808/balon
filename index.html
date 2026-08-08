@@ -1,11 +1,108 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KORGEM Panda & Pig Balloon Pop</title>
-  <meta http-equiv="refresh" content="0; url=app/index.html" />
-  <script>location.replace('app/index.html');</script>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1d35" />
+  <title>KORGEM Panda & Pig Balloon Fun</title>
+  <link rel="stylesheet" href="app/css/game.css" />
+  <link rel="stylesheet" href="app/css/animations.css" />
+  <link rel="stylesheet" href="app/css/hud.css" />
+  <link rel="stylesheet" href="app/css/settings.css" />
 </head>
-<body></body>
+<body>
+  <main id="stage" class="stage" aria-label="KORGEM Panda and Pig Balloon Fun">
+    <img id="baseScene" class="base-scene" src="assets/background/carnival_base.png" alt="Colorful carnival" draggable="false" />
+
+    <div id="cloudLayer" class="fx-layer cloud-layer" aria-hidden="true"></div>
+    <div id="wheelLayer" class="fx-layer wheel-layer" aria-hidden="true"></div>
+    <div id="flagLayer" class="fx-layer flag-layer" aria-hidden="true"></div>
+    <div id="lightLayer" class="fx-layer light-layer" aria-hidden="true"></div>
+    <div id="decorBalloonLayer" class="fx-layer decor-balloon-layer" aria-hidden="true"></div>
+    <div id="ambientConfetti" class="fx-layer ambient-confetti" aria-hidden="true"></div>
+
+    <img id="pandaPatch" class="character-patch panda-patch" src="assets/characters/panda/idle_patch.png" alt="" draggable="false" />
+    <img id="pigPatch" class="character-patch pig-patch" src="assets/characters/pig/idle_patch.png" alt="" draggable="false" />
+
+    <img id="pandaEye" class="eye-patch panda-eye" src="assets/characters/panda/open_eye.png" alt="" draggable="false" />
+    <img id="pigEye" class="eye-patch pig-eye" src="assets/characters/pig/open_eye.png" alt="" draggable="false" />
+
+    <div id="balloonLayer" class="balloon-layer" aria-hidden="true"></div>
+
+    <img class="basket-overlay basket-left" src="assets/baskets/panda_basket.png" alt="" draggable="false" />
+    <img class="basket-overlay basket-right" src="assets/baskets/pig_basket.png" alt="" draggable="false" />
+
+    <div id="burstLayer" class="burst-layer" aria-hidden="true"></div>
+
+    <section id="hud" class="hud is-hidden" aria-live="polite">
+      <div class="hud-card score-card"><span>SCORE</span><strong id="scoreValue">0</strong></div>
+      <div id="timeCard" class="hud-card time-card"><span>TIME</span><strong id="timeValue">60</strong></div>
+      <div class="hud-card record-card"><span>RECORD</span><strong id="recordValue">0</strong></div>
+      <div class="hud-card credit-card"><span>CREDIT</span><strong id="creditValue">0</strong></div>
+    </section>
+
+    <section id="messagePanel" class="message-panel" aria-live="assertive">
+      <div id="modeBadge" class="mode-badge">DEMO MODE</div>
+      <h1 id="mainMessage">PLEASE INSERT COIN</h1>
+      <p id="subMessage">PRESS C TO INSERT COIN</p>
+    </section>
+
+    <div id="countdown" class="countdown is-hidden" aria-live="assertive"></div>
+    <div id="toast" class="toast is-hidden"></div>
+    <button id="pauseButton" class="pause-button is-hidden" type="button" aria-label="Pause">Ⅱ</button>
+
+    <section id="settingsPanel" class="settings-panel" aria-hidden="true">
+      <div class="settings-window">
+        <header><div><h2>SERVICE SETTINGS</h2><p>F8 TO CLOSE • SETTINGS SAVE LOCALLY</p></div><button id="settingsClose" type="button">×</button></header>
+        <nav class="settings-tabs" aria-label="Settings sections">
+          <button class="tab active" data-tab="game" type="button">GAME</button>
+          <button class="tab" data-tab="audio" type="button">AUDIO</button>
+          <button class="tab" data-tab="visual" type="button">VISUAL</button>
+        </nav>
+        <div class="settings-body">
+          <div class="settings-page active" data-page="game">
+            <label>Game Time <input id="setGameDuration" type="number" min="10" max="300" step="5"><em>s</em></label>
+            <label>Score Per Hit <input id="setScorePerHit" type="number" min="10" max="1000" step="10"></label>
+            <label>Balloon Interval <input id="setBalloonInterval" type="number" min="500" max="5000" step="100"><em>ms</em></label>
+            <label>Balloon Life <input id="setBalloonLife" type="number" min="800" max="6000" step="100"><em>ms</em></label>
+            <label>Warning Starts <input id="setWarningSeconds" type="number" min="3" max="30" step="1"><em>s</em></label>
+            <label>Balloon Size <input id="setBalloonScale" type="range" min="80" max="180" step="1"><output></output></label>
+            <label class="toggle-row">Fullscreen On Start <input id="setFullscreenOnStart" type="checkbox"></label>
+          </div>
+          <div class="settings-page" data-page="audio">
+            <label>Master Volume <input id="setMasterVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Music Volume <input id="setMusicVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Voice Volume <input id="setVoiceVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Effects Volume <input id="setEffectsVolume" type="range" min="0" max="100"><output></output></label>
+            <hr>
+            <label>Insert Coin Voice <input id="setInsertCoinVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Credit Sound <input id="setCoinVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Game Starting Voice <input id="setStartVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Balloon Spawn <input id="setLaunchVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Score Sound <input id="setScoreVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Wrong Sound <input id="setWrongVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Final Warning <input id="setWarningVolume" type="range" min="0" max="100"><output></output></label>
+            <label>Game Over Voice <input id="setGameOverVolume" type="range" min="0" max="100"><output></output></label>
+          </div>
+          <div class="settings-page" data-page="visual">
+            <label>Confetti Power <input id="setConfettiPower" type="range" min="40" max="220" step="5"><output></output></label>
+            <label class="toggle-row">Ferris Wheel Motion <input id="setWheel" type="checkbox"></label>
+            <label class="toggle-row">Moving Clouds <input id="setClouds" type="checkbox"></label>
+            <label class="toggle-row">Blinking Lights <input id="setLights" type="checkbox"></label>
+            <label class="toggle-row">Waving Flags <input id="setFlags" type="checkbox"></label>
+            <label class="toggle-row">Decor Balloons <input id="setDecorBalloons" type="checkbox"></label>
+            <label class="toggle-row">Ambient Confetti <input id="setAmbientConfetti" type="checkbox"></label>
+            <label class="toggle-row">Character Blink <input id="setBlink" type="checkbox"></label>
+          </div>
+        </div>
+        <footer>
+          <button id="resetSettings" class="secondary" type="button">RESET DEFAULTS</button>
+          <button id="saveSettings" class="primary" type="button">SAVE SETTINGS</button>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app/js/main.js"></script>
+</body>
 </html>
